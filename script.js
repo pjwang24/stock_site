@@ -1,0 +1,24 @@
+const apiKey = 'H2T1DLF4KKF82KC6'; // Replace with your Alpha Vantage API key
+
+async function getStockPrice() {
+  const stockSymbol = document.getElementById('stockInput').value.toUpperCase();
+  const stockPriceElement = document.getElementById('stockPrice');
+
+  if (stockSymbol) {
+    try {
+      const response = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${apiKey}`);
+      const data = await response.json();
+
+      if (data['Global Quote']) {
+        const price = data['Global Quote']['05. price'];
+        stockPriceElement.textContent = `Stock Price for ${stockSymbol}: $${price}`;
+      } else {
+        stockPriceElement.textContent = 'Stock symbol not found. Please try again.';
+      }
+    } catch (error) {
+      stockPriceElement.textContent = 'Error fetching data. Please try again later.';
+    }
+  } else {
+    stockPriceElement.textContent = 'Please enter a stock symbol.';
+  }
+}
