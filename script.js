@@ -1,4 +1,4 @@
-const apiKey = 'H2T1DLF4KKF82KC6'; // Replace with your Alpha Vantage API key
+const apiKey = 'H2T1DLF4KKF82KC6'; // Alpha Vantage API key
 
 async function getStockPrice() {
   const stockSymbol = document.getElementById('stockInput').value.toUpperCase();
@@ -22,3 +22,7 @@ async function getStockPrice() {
     stockPriceElement.textContent = 'Please enter a stock symbol.';
   }
 }
+
+// the global quote function retrieves global market data for a particular stock
+// '05. price' is an identifier for a particular price-related field, such as the current price or a specific price point 
+// for the stock symbol requested in the API call
